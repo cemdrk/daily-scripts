@@ -5,14 +5,16 @@ import re
 current_dir = os.getcwd()
 
 # ex: 12345-myfile.pdf
-pattern = re.compile(r'(\d{3,})-(.*\.pdf)')
+regex = r'(\d{3,})-(.*\.pdf)'
+
+pattern = re.compile(regex)
 
 for file in os.listdir(current_dir):
     match = pattern.match(file)
     if match:
         old_name = match.group(0)
         new_name = match.group(2)
-        print('renaming %s to %s ' % (old_name, new_name))
+        print('renaming %s to %s' % (old_name, new_name))
 
         # if file not exists
         if not os.path.isfile(new_name):
